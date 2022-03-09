@@ -164,7 +164,7 @@ class Tree
 
 
 
-
+  # Thanks to the Odin Project student that wrote this pretty print method for the binary tree!
   def pretty_print(node = @root, prefix = '', is_left = true)
     if root != nil
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
@@ -188,18 +188,19 @@ class Node
 end
 
 
-tree_array = [1, 2, 3, 4, 5, 6, 7]
+tree_array = Array.new(15) {rand(1..100)}
 tree = Tree.new(tree_array)
 tree.build_tree(tree_array.uniq.sort, 0, tree_array.length - 1)
-tree.pretty_print
-#tree.level_order([tree.root], [], tree_array) { |root| puts root}
+puts tree.balanced?(tree.root)
 tree.inorder(tree.root, []) { |array| print array}
 tree.preorder(tree.root, []) { |array| print array}
 tree.postorder(tree.root, []) { |array| print array}
-print tree.depth(tree.root, [tree.root], [])
-puts tree.height(tree.root.right.left)
-tree.insert(10, tree.root)
-tree.insert(100, tree.root)
+tree.insert(150, tree.root)
+tree.insert(200, tree.root)
+tree.insert(250, tree.root)
 puts tree.balanced?(tree.root)
 tree.rebalance(tree.root)
-tree.pretty_print
+puts tree.balanced?(tree.root)
+tree.inorder(tree.root, []) { |array| print array}
+tree.preorder(tree.root, []) { |array| print array}
+tree.postorder(tree.root, []) { |array| print array}
